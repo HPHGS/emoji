@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Emoji Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #333; /* Dark grey background */
+            color: white;
+            font-size: 10vh; /* Adjust the font size to fit the screen */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Fetch the list of emojis from the provided URL
+        fetch('https://gist.githubusercontent.com/jhancock532/6e1d7f88eb59663e5706391ff77e2763/raw/053d71dff3f1c6ea09a086cf24602d41a0f94df0/emoji.js')
+            .then(response => response.json())
+            .then(emojis => {
+                // Function to get a random emoji from the fetched list
+                function getRandomEmoji() {
+                    const randomIndex = Math.floor(Math.random() * emojis.length);
+                    return emojis[randomIndex];
+                }
+
+                // Display a random emoji in the body
+                document.body.innerHTML = getRandomEmoji();
+            })
+            .catch(error => console.error('Error fetching emojis:', error));
+    </script>
+</body>
+</html>
